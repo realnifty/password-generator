@@ -24,11 +24,24 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+function passLength() {
+  var passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
+  if (passLengthVal >= 8 && passLengthVal <= 128) {
+    window.alert("Your password will be " + passLengthVal + " characters long.");
+    return true;
+  } else {
+    window.alert("Please enter a valid password length.");
+    passLength();
+  }
+  
+}
+
 function generatePassword () {
   console.log("Generate Password button clicked.");
-  window.prompt("Choose a password length between 8 - 128 characters.");
-  return "Password will go here."
-}
+  passLength();
+};
+
+
 
 // prompt ask password length (8-128 characters)
 // prompt ask password character type (lowercase, uppercase, numeric, and special characters)
