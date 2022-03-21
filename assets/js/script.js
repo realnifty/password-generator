@@ -24,13 +24,62 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+function specialCharPrompt() {
+  var specialCharPromptConfirm = window.prompt("Include special characters? Enter 'yes' or 'no' to continue.");
+  specialCharPromptConfirm = specialCharPromptConfirm.toLowerCase();
+  if (specialCharPromptConfirm === "yes") {
+    window.alert("Your password will contain special characters.");
+    return true;
+  }
+  else if (specialCharPromptConfirm === "no") {
+    window.alert("Your password will not contain special characters.");
+    return false
+  }
+  else {
+    window.alert("That was not a valid entry.");
+    return specialCharPrompt();
+  }
+}
 
+function numberPrompt() {
+  var numberPromptConfirm = window.prompt("Include numbers? Enter 'yes' or 'no' to continue.");
+  numberPromptConfirm = numberPromptConfirm.toLowerCase();
+  if (numberPromptConfirm === "yes") {
+    window.alert("Your password will contain numbers.");
+    return true;
+  }
+  else if (numberPromptConfirm === "no") {
+    window.alert("Your password will not contain numbers.");
+    return false
+  }
+  else {
+    window.alert("That was not a valid entry.");
+    return numberPrompt();
+  }
+}
+
+function uppercasePrompt() {
+  var uppercasePromptConfirm = window.prompt("Include uppercase characters? Enter 'yes' or 'no' to continue.");
+  uppercasePromptConfirm = uppercasePromptConfirm.toLowerCase();
+  if (uppercasePromptConfirm === "yes") {
+    window.alert("Your password will contain uppercase characters.");
+    return true;
+  }
+  else if (uppercasePromptConfirm === "no") {
+    window.alert("Your password will not contain uppercase characters.");
+    return false
+  }
+  else {
+    window.alert("That was not a valid entry.");
+    return uppercasePrompt();
+  }
+}
 
 function lowercasePrompt() {
   var lowercasePromptConfirm = window.prompt("Include lowercase characters? Enter 'yes' or 'no' to continue.");
   lowercasePromptConfirm = lowercasePromptConfirm.toLowerCase();
   if (lowercasePromptConfirm === "yes") {
-    window.alert("Your password will include lowercase characters.");
+    window.alert("Your password will contain lowercase characters.");
     return true;
   }
   else if (lowercasePromptConfirm === "no") {
@@ -58,6 +107,9 @@ function generatePassword () {
   console.log("Generate Password button clicked.");
   passLength();
   lowercasePrompt();
+  uppercasePrompt();
+  numberPrompt();
+  specialCharPrompt();
 };
 
 
