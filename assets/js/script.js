@@ -24,6 +24,25 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
+
+function lowercasePrompt() {
+  var lowercasePromptConfirm = window.prompt("Include lowercase characters? Enter 'yes' or 'no' to continue.");
+  lowercasePromptConfirm = lowercasePromptConfirm.toLowerCase();
+  if (lowercasePromptConfirm === "yes") {
+    window.alert("Your password will include lowercase characters.");
+    return true;
+  }
+  else if (lowercasePromptConfirm === "no") {
+    window.alert("Your password will not contain lowercase characters.");
+    return false
+  }
+  else {
+    window.alert("That was not a valid entry.");
+    return lowercasePrompt();
+  }
+}
+
 function passLength() {
   var passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
   if (passLengthVal >= 8 && passLengthVal <= 128) {
@@ -33,12 +52,12 @@ function passLength() {
     window.alert("Please enter a valid password length.");
     passLength();
   }
-  
 }
 
 function generatePassword () {
   console.log("Generate Password button clicked.");
   passLength();
+  lowercasePrompt();
 };
 
 
