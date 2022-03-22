@@ -1,4 +1,3 @@
-// Assignment Code
 var randomChar = {
   lowercase: randomLowercase,
   uppercase: randomUppercase,
@@ -6,24 +5,24 @@ var randomChar = {
   specialcharacter: randomSpecialChar,
 };
 
-// criteria randomizer functions
+var charTypeSelect = [];
 
 function randomLowercase() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
+};
 
 function randomUppercase() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
+};
 
 function randomNumber() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
+};
 
 function randomSpecialChar() {
   var specialChars = " !#$%&'()*+,-./:;<=>?@[]\\^_`{|}~\" ";
   return specialChars[Math.floor(Math.random() * specialChars.length)];
-}
+};
 
 function specialCharPrompt() {
   var specialCharPromptConfirm = window.prompt("Include special characters? Enter 'yes' or 'no' to continue.");
@@ -40,7 +39,7 @@ function specialCharPrompt() {
     window.alert("That was not a valid entry.");
     return specialCharPrompt();
   }
-}
+};
 
 function numberPrompt() {
   var numberPromptConfirm = window.prompt("Include numbers? Enter 'yes' or 'no' to continue.");
@@ -57,7 +56,7 @@ function numberPrompt() {
     window.alert("That was not a valid entry.");
     return numberPrompt();
   }
-}
+};
 
 function uppercasePrompt() {
   var uppercasePromptConfirm = window.prompt("Include uppercase characters? Enter 'yes' or 'no' to continue.");
@@ -74,7 +73,7 @@ function uppercasePrompt() {
     window.alert("That was not a valid entry.");
     return uppercasePrompt();
   }
-}
+};
 
 function lowercasePrompt() {
   var lowercasePromptConfirm = window.prompt("Include lowercase characters? Enter 'yes' or 'no' to continue.");
@@ -91,7 +90,7 @@ function lowercasePrompt() {
     window.alert("That was not a valid entry.");
     return lowercasePrompt();
   }
-}
+};
 
 function passLength() {
   var passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
@@ -103,7 +102,19 @@ function passLength() {
     window.alert("Please enter a valid password length.");
     passLength();
   }
+};
+
+function verifyCharTypeSelect() {
+  charTypeSelect.push(passLength(), lowercasePrompt(), uppercasePrompt(), numberPrompt(), specialCharPrompt());
+  for (var i = 1; i < charTypeSelect.length; i++) {
+    if (charTypeSelect[i]) {
+      return true;
+    }
+  }
+  window.alert("You must select at least one character type.");
+  verifyCharTypeSelect();
 }
+
 
 var generateBtn = document.querySelector("#generate");
 
@@ -119,14 +130,6 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword () {
-  console.log("Generate Password button clicked.");
-  passLength();
-  lowercasePrompt();
-  uppercasePrompt();
-  numberPrompt();
-  specialCharPrompt();
-};
-
-
-
+function generatePassword(){
+  
+}
