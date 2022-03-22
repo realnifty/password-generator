@@ -1,10 +1,3 @@
-var randomChar = {
-  lowercase: randomLowercase,
-  uppercase: randomUppercase,
-  number: randomNumber,
-  specialcharacter: randomSpecialChar,
-};
-
 var charTypeSelect = [];
 
 function randomLowercase() {
@@ -23,6 +16,10 @@ function randomSpecialChar() {
   var specialChars = " !#$%&'()*+,-./:;<=>?@[]\\^_`{|}~\" ";
   return specialChars[Math.floor(Math.random() * specialChars.length)];
 };
+
+function rng(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function specialCharPrompt() {
   var specialCharPromptConfirm = window.prompt("Include special characters? Enter 'yes' or 'no' to continue.");
@@ -93,7 +90,7 @@ function lowercasePrompt() {
 };
 
 function passLength() {
-  var passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
+  passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
   if (passLengthVal >= 8 && passLengthVal <= 128) {
     window.alert("Your password will be " + passLengthVal + " characters long.");
     return true;
@@ -115,6 +112,41 @@ function verifyCharTypeSelect() {
   verifyCharTypeSelect();
 }
 
+function generatePassword(){
+  verifyCharTypeSelect();
+  var finalPassword = "";
+  while (finalPassword.length < passLengthVal) {
+    if (charTypeSelect[1] === true) {
+      finalPassword += randomLowercase();
+    }
+    if (charTypeSelect[2] === true) {
+      finalPassword += randomUppercase();
+    }
+    if (charTypeSelect[3] === true) {
+      finalPassword += randomNumber();
+    }
+    if (charTypeSelect[4] === true) {
+      finalPassword += randomSpecialChar();
+    }
+    var randomCharType = rng(1,4);
+    if (randomCharType === 1 && charTypeSelect[1] === true) {
+      finalPassword += randomLowercase();
+    }
+    else if (randomCharType === 2 && charTypeSelect[2] === true) {
+      finalPassword += randomUppercase();
+    }
+    else if (randomCharType === 3 && charTypeSelect[3] === true) {
+      finalPassword += randomNumber();
+    }
+    else if (randomCharType === 4 && charTypeSelect[4] === true) {
+      finalPassword += randomSpecialChar();
+    }
+    else {
+      finalPassword += "";
+    }
+  }
+  return finalPassword;
+}
 
 var generateBtn = document.querySelector("#generate");
 
@@ -129,7 +161,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-function generatePassword(){
-  
-}
