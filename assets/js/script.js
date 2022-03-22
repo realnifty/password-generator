@@ -1,26 +1,33 @@
+// this variable is an empty array for criteria to be pushed into to later verify if they are true or false.
 var charTypeSelect = [];
 
+// this function returns a string of lowercase characters created randomly from the specified sequence of UTF-16 code units.
 function randomLowercase() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 };
 
+// this function returns a string of uppercase characters created randomly from the specified sequence of UTF-16 code units.
 function randomUppercase() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 };
 
+// this function returns a string of numbers created randomly from the specified sequence of UTF-16 code units.
 function randomNumber() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 };
 
+// this function declares a variable with a string containing special characters/symbols and returns a random symbol based on the character length of the string.
 function randomSpecialChar() {
   var specialChars = " !#$%&'()*+,-./:;<=>?@[]\\^_`{|}~\" ";
   return specialChars[Math.floor(Math.random() * specialChars.length)];
 };
 
+// standard random number generator function which will return a random integer between a specified min and max number inclusive.
 function rng(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// this function executes a prompt for verifying a specific criterion special characters and returns a value of true or false depending on the input.
 function specialCharPrompt() {
   var specialCharPromptConfirm = window.prompt("Include special characters? Enter 'yes' or 'no' to continue.");
   specialCharPromptConfirm = specialCharPromptConfirm.toLowerCase();
@@ -38,6 +45,7 @@ function specialCharPrompt() {
   }
 };
 
+// this function executes a prompt for verifying a specific criterion numbers and returns a value of true or false depending on the input.
 function numberPrompt() {
   var numberPromptConfirm = window.prompt("Include numbers? Enter 'yes' or 'no' to continue.");
   numberPromptConfirm = numberPromptConfirm.toLowerCase();
@@ -55,6 +63,7 @@ function numberPrompt() {
   }
 };
 
+// this function executes a prompt for verifying a specific criterion uppercase characters and returns a value of true or false depending on the input.
 function uppercasePrompt() {
   var uppercasePromptConfirm = window.prompt("Include uppercase characters? Enter 'yes' or 'no' to continue.");
   uppercasePromptConfirm = uppercasePromptConfirm.toLowerCase();
@@ -72,6 +81,7 @@ function uppercasePrompt() {
   }
 };
 
+// this function executes a prompt for verifying a specific criterion lowercase characters and returns a value of true or false depending on the input.
 function lowercasePrompt() {
   var lowercasePromptConfirm = window.prompt("Include lowercase characters? Enter 'yes' or 'no' to continue.");
   lowercasePromptConfirm = lowercasePromptConfirm.toLowerCase();
@@ -89,6 +99,7 @@ function lowercasePrompt() {
   }
 };
 
+// this function executes a prompt for verifying a specific criterion password length and returns a value of true or invalid = recursive function call depending on the input.
 function passLength() {
   passLengthVal = window.prompt("Choose a password length between 8 - 128 characters.");
   if (passLengthVal >= 8 && passLengthVal <= 128) {
@@ -101,6 +112,8 @@ function passLength() {
   }
 };
 
+/* this function pushes the criteria prompt functions into the empty array at the top of the file to verify their value as true. 
+the for loop index starts at 1, since the passLength(); function is inherently true regardless of input. */
 function verifyCharTypeSelect() {
   charTypeSelect.push(passLength(), lowercasePrompt(), uppercasePrompt(), numberPrompt(), specialCharPrompt());
   for (var i = 1; i < charTypeSelect.length; i++) {
@@ -108,10 +121,15 @@ function verifyCharTypeSelect() {
       return true;
     }
   }
+  // if none of the array items have a a value of true, the function is recursively called until at least one character type is chosen.
   window.alert("You must select at least one character type.");
   verifyCharTypeSelect();
 }
 
+/* this function generates the password from a set of given criteria defined in the charTypeSelect array in the above function.
+a variable finalPassword is declared as an empty string. the while loop condition is that so long as the length of finalPassword is less than the preferred
+password length given by user input in the passLength prompt, the function will cycle through the index of array charTypeSelect and append a randomly
+generated character according to its parent criterion to the empty string value of finalPassword */
 function generatePassword(){
   verifyCharTypeSelect();
   var finalPassword = "";
