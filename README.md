@@ -28,7 +28,7 @@ This app was built with:
 
 ## Installation
 
-No installation required! Simply navigate to the deployment via link provided above. To run locally, clone the repository to your local machine and open with your preffered browser.
+No installation required! Simply navigate to the deployment via link provided above. To run locally, clone the repository to your local machine and open with your preferred browser.
 
 ## License
     
